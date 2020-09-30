@@ -1,0 +1,159 @@
+==>PERTEMUAN PERTAMA
+Laravel membuat sendiri local server untuk running ( php artisan server )
+kalo untuk CLOSING serve bisa menggunakan CTRL + C atau command C
+ 
+semua dasar sistem laravel terdapat di routes
+di routes tersebut terdapat beberapa kata untuk menjalankannya atau method
+requestnya seperti GET,POST,PUT,DELETE etc
+
+dari routes memanggil view yang berada pada folder resources/views nama blade
+pada views atau extendtion blade adalah sebuah extendtion yang nanti membantu
+untuk menjalakan kan fungsi-fungsi bada badian viewsnya
+
+
+===>PERTEMUAN KE 2
+membuat controller di laravel bisa membuat sebuah controller menggunakan 
+command : php artisan make:controller ArticleController (nama controllernya
+adalah article dengan akhiran wajib sebagai penanda yaitu controller)
+
+===>PERTEMUAN KE 3
+membuat routes yang lebih komplex dimana setelah nama routes bisa diisi dengan
+sebuah value dengan tanda {} dan isinya bisa any,num,slug {slug} dll, slug adalah
+sebuah judul yang ramah url dapat digunakan sebagai pengganti id
+
+===>PERTEMUAN KE 4 
+pasing variabel ke controller dengan cara menambah any pada routes dan tangkap
+pada parameter controller, lebih simple jika menggunakan compact
+
+===>PERTEMUAN KE 5
+extend Layout blade
+1. buat layouts lalu pada body slipkan @yeild('nama content')
+2. pada view yang di tuju extends('alamat layout yang dipakai')
+3. pada view masukan nama section yang sesai dengan content layout
+misalnya @section('nama content') lalu akhiri dengan @endsection
+
+===>PERTEMUAN KE 6
+management halaman pada satu folder jika memanggil view nya jika ada di dalam 1file
+hanya perlu menambahkah titik/dot return views('aticle.singel') misalnya
+
+===>PERTEMUAN KE 7
+LOOPING data yang sudah diambil oleh controller data arrya assosiave bisa dipanggil
+menggunakan compact contoh compact('dataArticle')
+
+lalu pada view nya hanya perlu di looping saja menggunakan syntax blade agar lebih simple
+tapi karena datanya array assosiave maka jika langsung ditampilkan akan error sehingga
+harus dikluarkan dulu dari arraynya menggunakan foreach dnegan syntax blade lebih simple
+
+===>PERTEMUAN KE 8
+penggunaan file .env untuk pengaturan database menggnatikan pengaturan yang ada di config
+jadi agar lebih simple ganti config databasenya di .env saja jika ada yang telah di ubah
+pada folde .env sebaiknya merestart lagi php development servenya atau php artisan serve
+
+===>PERTEMUAN KE 10
+menggunakan aplikasi mockaroo.com untuk membuat database bayangan
+
+===>PERTEMUAN KE 11
+membuat model menggunakan command : php artisan make:model namamodel
+normalnya model ini mewakili nama yang ada di databasenya misal nama databasenya adalah
+articles dengak akhiran S karena jamak, jadi setiap table akan memiliki satu model pada
+umunya jika nama table adalah jamak misal Articles maka pada model akan menjadi singular
+menjadi Article
+
+===>PERTEMUAN KE 12
+jika nama table tidak konvensional atau maka akan error, cara nya mudah hanya perlu
+menuliskan protected $table = 'nama table yang tidak konvensional';
+contoh protected = 'my_articles'; (my_articles disini adalah nama table)
+
+===>PERTEMUAN KE 13 
+pada laravel sudah ada fitur pagiantion dimana pagination ini sudah terintegrasi dengan
+sytlenya bootstrap, cara pakainya dari controller pada saat panggil model dengan ::paginate(5)
+dengan parameter jumlah data yang ingin ditampilkan 
+
+lalu pada content atau viewnya hanya perlu menuliskan {{$namaVar->links()}} jika sudah ada 
+CDN atau framewok bootstrap maka ini akan langsung rapih
+
+===>PERTEMUAN KE 14
+MEMBUAT FORM dengan csrf
+
+===>PERTEMUAN KE 15
+meski routes sama tapi method bebeda maka tidak apa2 jika di laravel laravel akan memberitahu
+jika sebuah form tidak menggunakan sebuah validasi csrf dimana satu form itu hanya boleh
+ditambah lewat form itu saja, pada tutorial ini menggunakan nama fungsi yang konvensional dengan
+fungsi2 laravel jadi jika nama  fungsi mau diubah oleh fungsi lain maka tidak masalah, ini 
+hanya membiasakan saja
+
+===>PERTEMUAN KE 16
+laravel sudah meng asumsikan sebuah table memiliki created_at dan updataed_ad jadi akan error jika
+tablenya tidak meiliki 2 field tersebut, untuk mengatasinya bisa menggunakan 
+
+
+===>PERTEMUAN KE 17 
+form validation lihat dari dokumen validationnya caranya cukup mudah 
+
+===>PERTEMUAN KE 24
+bagian eloquent atau sistem databaenya ada mass assigment adalah cara lebih praktis memasukan data
+jadi pada penulisan di controllernya jadi beda
+
+===>PERTEMUAN KE 27
+command membuat controller dengan simple dan lengkap langsung dengan fungsi bawaanya
+php artisan make:controller PhotoController --resource
+
+
+===>PERTEMUAN KE 28
+menggunakan method chunk untk membagi2 data atau lebih tepatnya memecah arrya, chunk adalah 
+sebuah method untuk membagi bagi data yang teringerasi dengan bootstrap, jika chunk di loopingnya 3
+ maka pada paginate di controllernya harus kelipaatan dari 3, misalnya jadi 6 jadi tampilnya bagus
+
+===>PERTEMUAN KE 29
+migration hampir sama seperti vsc dimana yg berbeda disini adalah log dari data basenya dengan 
+migration kita dapat membuat database dengan command langsung
+php artisan make:migration create_users_table
+
+jika ingin dengan langsung dengan table
+php artisan make:migration create_users_table --create=users
+(buat tabel users dengan nama plural users)
+
+command diatas hanya untuk membuat table pada migrasinya saja dan belum di add ke database
+untuk execute nya kita gunakan php artisan migrate
+
+
+===>PERTEMUAN KE 31 
+custom errors 404 pada resource buat folder errors lalu didalamnya bikin sebuah nama filenya
+misal 404.blade.php 
+
+
+====>PERTEMUAN KE 32
+gunakan php artisan migrate:rollback  untuk menarik kembali semua migrasi yang telah dilakukan
+rollback ini menghapus semua table dan data pada tabel dan menarik semua tabel yang dimigrasi
+jika ingin datanya tidak hilang maka export terlebih dahulu
+
+
+menggunakan softdelete untk menggunakan softdelete kita harus menambah sebuah field deleted_at
+pada table caranya gampang kita hanya perlu menambah nya di migrasi yang telah dibuat dan
+memaki perintah field khusu delete, selain itu kita harus memberitahu model bahwa kita akan
+melakukan softdelete dengan cara user softDeletes pada model
+
+
+===>PERTEMUAN KE 33 
+LOAD CSS DAN JS pada folder public
+cara pemnaggilannya cukup <link href="/css/style.css"> js juga sama
+
+===>PERTEMUAN KE 34
+memberi yield pada gaidan template untuk membei title sesuai halaman dan default title jika
+isi dari yield title kosong
+
+===>PERTEMUAN KE 35
+include footer jika ada halaman yang tidak semua memiliki footer maka bisa di include perhalamannya
+
+===>PERTEMUAN KE 36
+sistem templating blademembuat components agar lebih dinamis dan flexsibel caranya mirip2 seperti 
+framework front-end pada folder resource sebuah folder components karena dari segi name, id, variabel
+semuanya akan sama dalam 1 form input tersebut 
+
+pada bodynya <x-namafilecomponents>
+
+===>PERTEMUAN KE 6
+penambahan field untuk database menggunakan migration
+php artisan make:migrtion add_thumbnail_to_articles
+makan nanti akan ada akan ada file baru di migrationnya yang bernama add_thumbnail_to_articles
+lalu tambahkan saja field barunya disitu
